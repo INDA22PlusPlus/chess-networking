@@ -1,1 +1,19 @@
 syntax = "proto3";
+
+message Connect {
+	uint64 connection_id; 
+	BoardState starting_position;
+}
+
+message Move {
+	uint8 from_square;
+	uint8 to_square;
+}
+
+message BoardState {
+	string fen_string;
+}
+
+message OverrideState {
+	BoardState new_state;
+}
