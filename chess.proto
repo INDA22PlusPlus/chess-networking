@@ -1,5 +1,15 @@
 syntax = "proto3";
 
+enum Piece {
+	Pawn = 0;
+	Knight = 1;
+	Bishop = 2;
+	Rook = 3;
+	Queen = 4;
+	King = 5;
+}
+
+
 message Connect {
 	uint64 connection_id; 
 	BoardState starting_position;
@@ -8,6 +18,7 @@ message Connect {
 message Move {
 	uint8 from_square;
 	uint8 to_square;
+	optional Piece promotion;
 }
 
 message BoardState {
