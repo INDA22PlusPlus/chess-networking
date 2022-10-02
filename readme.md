@@ -11,7 +11,7 @@ message C2SConnectRequest {
 	bool spectate = 1;
 }
 ```
-When a ``C2SConnectRequest`` (C2S: Client to server) packet is received, the server is to handle the start of a new game. It is up to the implementation to determine whether or not to accept spectators, or whether to allow concurrent connections. ```game_id`` is to be set if the client wishes to spectate or resume a game with a given ``game_id``.
+When a ``C2SConnectRequest`` (C2S: Client to server) packet is received, the server is to handle the start of a new game. It is up to the implementation to determine whether or not to accept spectators, or whether to allow concurrent connections. ``game_id`` is to be set if the client wishes to spectate or resume a game with a given ``game_id``.
 
 ```proto
 message S2CConnectAck {
@@ -34,7 +34,7 @@ The ``starting_position`` field contains the ``BoardState`` to start from, simpl
 
 # Moves
 
-````proto
+```proto
 enum Piece {
 	Pawn = 0;
 	Knight = 1;
