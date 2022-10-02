@@ -15,7 +15,7 @@ message S2CMessage {
 ```
 In protobuf, packets are not self describing. In other words, if we send an array of bytes over the wire on its own, the recipient will not be able to determine which message it represents (eg. is it a Move, S2CConnectAck etc?). Protobuf version 3 solved this by introducing ``oneof``. ``oneof`` lets us represent one of many possible types in one field, and its protobuf encoding contains information on which type it represents. 
 
-Every S2C message is therefore wrapped in an ``S2CMessage``` so that the type of message may be determined by the server.
+Every S2C message is therefore wrapped in an ``S2CMessage`` so that the type of message may be determined by the client.
 
 # Client to server (C2S) messages
 ```
