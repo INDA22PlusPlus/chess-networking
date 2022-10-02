@@ -34,6 +34,19 @@ message S2CMoveAck {
 	BoardState board_result = 2; 
 }
 
+message S2CMessage {
+	oneof msg {
+		Move move = 1;
+		S2CConnectAck connect_ack = 2;
+		S2CMoveAck move_ack = 3;
+	}
+}
+message C2SMessage {
+	oneof msg {
+		Move move = 1;
+		C2SConnectRequest connect_request = 2;
+	}
+}
 
 message BoardState {
 	string fen_string = 1;

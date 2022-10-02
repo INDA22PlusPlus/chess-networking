@@ -36,6 +36,38 @@ pub struct S2cMoveAck {
     pub board_result: ::core::option::Option<BoardState>,
 }
 #[derive(Clone, PartialEq, ::prost::Message)]
+pub struct S2cMessage {
+    #[prost(oneof="s2c_message::Msg", tags="1, 2, 3")]
+    pub msg: ::core::option::Option<s2c_message::Msg>,
+}
+/// Nested message and enum types in `S2CMessage`.
+pub mod s2c_message {
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Msg {
+        #[prost(message, tag="1")]
+        Move(super::Move),
+        #[prost(message, tag="2")]
+        ConnectAck(super::S2cConnectAck),
+        #[prost(message, tag="3")]
+        MoveAck(super::S2cMoveAck),
+    }
+}
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct C2sMessage {
+    #[prost(oneof="c2s_message::Msg", tags="1, 2")]
+    pub msg: ::core::option::Option<c2s_message::Msg>,
+}
+/// Nested message and enum types in `C2SMessage`.
+pub mod c2s_message {
+    #[derive(Clone, PartialEq, ::prost::Oneof)]
+    pub enum Msg {
+        #[prost(message, tag="1")]
+        Move(super::Move),
+        #[prost(message, tag="2")]
+        ConnectRequest(super::C2sConnectRequest),
+    }
+}
+#[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BoardState {
     #[prost(string, tag="1")]
     pub fen_string: ::prost::alloc::string::String,
@@ -66,3 +98,4 @@ impl Piece {
         }
     }
 }
+

@@ -3,6 +3,31 @@ This protocol specifies the interaction between two computers running two implem
 
 The protobuf file networking.proto contains the protobuf code. Either use the build crate ``prost_build`` to generate the rust code you need, or use the provided networking.rs file.
 
+# Server to client (S2C) messages
+```proto
+message S2CMessage {
+	oneof msg {
+		Move move = 1;
+		S2CConnectAck connect_ack = 2;
+		S2CMoveAck move_ack = 3;
+	}
+}
+```
+In protobuf, packets are not self describing. In other words, if we send an array of bytes over the wire on its own, the recipient will not be able to determine which message it represents (eg. is it a Move, S2CConnectAck etc?). Protobuf version 3 solved this by introducing ``oneof``. ``oneof`` lets us represent one of many possible types in one field, and its protobuf encoding contains information on which type it represents. 
+
+Every S2C message is therefore wrapped in an ``S2CMessage``` so that the type of message may be determined by the server.
+
+# Client to server (C2S) messages
+```
+message C2SMessage {
+	oneof msg {
+		Move move = 1;
+		C2SConnectRequest connect_request = 2;
+	}
+}
+```
+Likewise, we wrap C2S messsages in a ``C2SMessage``
+
 # Initial connection
 The server exposes port 1337 for incoming connections. 
 ```proto
