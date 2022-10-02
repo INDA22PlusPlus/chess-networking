@@ -62,6 +62,6 @@ message S2CMoveAck {
 
 After receiving a move, the server is to send a ``S2CMoveAck`` packet. If the move was considered legal, the ``legal`` field should be set to ``true``, ``false`` if illegal. ``board_result`` should contain the board representation as the board looks for the server after the move has been played. The client **must** override their own position to this value if it differs from their own game state. 
 
-**Authoritative server**: if the server finds the move to be illegal, it will ignore the move, set ``legal : false`` and send an unchanged ``board_result``, so that the client has to redo their move. On the other hand, if the client finds the servers move illegal, it will simply have to comply and perform the move anyways.
+**Authoritative server**: if the server finds the move to be illegal, it will ignore the move; set ``legal : false`` and send an unchanged ``board_result``, so that the client has to redo their move. On the other hand, if the client finds the servers move illegal, it will simply have to comply and perform the move anyways.
 
 
