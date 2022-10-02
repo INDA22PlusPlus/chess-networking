@@ -18,7 +18,7 @@ In protobuf, packets are not self describing. In other words, if we send an arra
 Every S2C message is therefore wrapped in an ``S2CMessage`` so that the type of message may be determined by the client.
 
 # Client to server (C2S) messages
-```
+```proto
 message C2SMessage {
 	oneof msg {
 		Move move = 1;
